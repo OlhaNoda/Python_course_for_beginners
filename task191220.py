@@ -8,7 +8,7 @@ print('Good day ', name, '! ',  day, ' is a perfect day to learn some python.', 
 print(f'Good day {name}! {day} is a perfect day to learn some python.')
 
 welcome = 'Good day <name>! <day> is a perfect day to learn some python.'
-print(welcome[0:9], name, welcome[15:17], day, welcome[22:len(welcome)], sep='')
+print(welcome[0:9], name, welcome[15:17], day, welcome[22:], sep='')
 
 # Task2
 # Concatenation
@@ -27,3 +27,8 @@ print(a*b)
 print(a**b)
 print(a%b)
 print(a//b)
+
+# task4
+# вывести из слова 'Корован' слово 'ворона'
+S1 = 'Корован' [::-1]
+print(S1[2:6]+S1[0:2])
