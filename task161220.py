@@ -5,6 +5,7 @@ if __name__ == '__main__':
 
 # 'Hello world'
     print('Hello world')
+    print('Hello world')
 
 # '123!456456!789$'
     print('123', 2*'456', '789', sep='!', end='$')
