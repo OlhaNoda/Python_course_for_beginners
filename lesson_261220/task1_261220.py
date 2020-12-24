@@ -10,5 +10,5 @@ i = 0
 while i < 10:
     random_list.append(random.randint(1, 10))
     i += 1
-print(f'The list of random numbers: {random_list}')
-print(f'The largest number from a list: {max(random_list)}')
+print(f'The list of random the numbers: {random_list}')
+print(f'The largest number from the list: {max(random_list)}')
