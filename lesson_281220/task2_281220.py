@@ -1,5 +1,6 @@
 # task2_281220
 '''
+Task 2
 Computes and returns the total price of stock.
 '''
 stock = {
