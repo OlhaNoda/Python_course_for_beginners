@@ -12,6 +12,6 @@ week = {
     6: 'Saturday',
     7: 'Sunday'
 }
-new_week = {value: key for key, value in week.items()}
-print(new_week)
+week = {value: key for key, value in week.items()}
+print(week)
 
