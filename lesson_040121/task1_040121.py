@@ -17,4 +17,5 @@ def catch_error():
         print('handle')
 
 
-catch_error()
+if __name__ == "__main__":
+    catch_error()
