@@ -50,11 +50,11 @@ def print_file(file_name):
 
 def input_contact():
     new_contact = {
-        'name': input('Input name: ').lower(),
-        'last_name': input('Input last name: ').lower(),
-        'phone': input('Input phone: ').lower(),
-        'country': input('Input country: ').lower(),
-        'city': input('Input city: ').lower()
+        'name': input('Имя: ').lower(),
+        'last_name': input('Фамилия: ').lower(),
+        'phone': input('Телефон: ').lower(),
+        'country': input('Страна: ').lower(),
+        'city': input('Город: ').lower()
     }
     return new_contact
 
