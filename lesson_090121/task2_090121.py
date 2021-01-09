@@ -1,22 +1,3 @@
-# task2_090121
-"""
-Task 2
-Extend Phonebook application
-Functionality of Phonebook application:
-Add new entries
-Search by first name
-Search by last name
-Search by full name
-Search by telephone number
-Search by city or state
-Delete a record for a given telephone number
-Update a record for a given telephone number
-An option to exit the program
-The first argument to the application should be the name of the phonebook.
-Application should load JSON data, if it is present in the folder with application,
-else raise an error. After the user exits, all data should be saved to loaded JSON.
-"""
-
 import json
 
 
@@ -50,11 +31,11 @@ def print_file(file_name):
 
 def input_contact():
     new_contact = {
-        'name': input('Имя: ').lower(),
-        'last_name': input('Фамилия: ').lower(),
-        'phone': input('Телефон: ').lower(),
-        'country': input('Страна: ').lower(),
-        'city': input('Город: ').lower()
+        'name': input('Input name: '),
+        'last_name': input('Input last name: '),
+        'phone': input('Input phone: '),
+        'country': input('Input country: '),
+        'city': input('Input city: ')
     }
     return new_contact
 
