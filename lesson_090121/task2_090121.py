@@ -47,7 +47,9 @@ def add_contact(file_name, new_contact):
 
 
 def input_search_parameter():
-    search_parameter = (input('Поиск контакта по имени (n), фамилии (l), телефону (p), стране(co), городу (ci).\n'
+    search_parameter = ''
+    while search_parameter not in ('n', 'l', 'p', 'co', 'ci'):
+        search_parameter = (input('Поиск контакта по имени (n), фамилии (l), телефону (p), стране(co), городу (ci).\n'
                               'Введите параметр поиска: ')).lower()
     return search_parameter
 
