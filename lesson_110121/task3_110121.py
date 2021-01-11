@@ -19,42 +19,42 @@ CHANNELS = ["BBC", "Discovery", "TV1000"]
 
 
 class TVController:
-    channel_index = 0
 
     def __init__(self, channels):
         self.channels = channels
+        self.channel_index = 0
 
     def first_channel(self):
-        TVController.channel_index = 0
-        return self.channels[TVController.channel_index]
+        self.channel_index = 0
+        return self.current_channel()
 
     def last_channel(self):
-        TVController.channel_index = len(self.channels)-1
-        return self.channels[TVController.channel_index]
+        self.channel_index = len(self.channels) - 1
+        return self.current_channel()
 
     def turn_channel(self, number):
-        TVController.channel_index = number-1
-        return self.channels[TVController.channel_index]
+        self.channel_index = number - 1
+        return self.current_channel()
 
     def next_channel(self):
-        if TVController.channel_index != len(self.channels)-1:
-            TVController.channel_index += 1
+        if self.channel_index != len(self.channels)-1:
+            self.channel_index += 1
         else:
-            TVController.channel_index = 0
-        return self.channels[TVController.channel_index]
+            self.channel_index = 0
+        return self.current_channel()
 
     def previous_channel(self):
-        if TVController.channel_index != 0:
-            TVController.channel_index -= 1
+        if self.channel_index != 0:
+            self.channel_index -= 1
         else:
-            TVController.channel_index = len(self.channels) - 1
-        return self.channels[TVController.channel_index]
+            self.channel_index = len(self.channels) - 1
+        return self.current_channel()
 
     def current_channel(self):
-        return self.channels[TVController.channel_index]
+        return self.channels[self.channel_index]
 
     def is_exist(self, search_channel):
-        if search_channel in (1, len(self.channels)) or search_channel in self.channels:
+        if search_channel in range(1, len(self.channels)+1) or search_channel in self.channels:
             answer = 'Yes'
         else:
             answer = 'No'
