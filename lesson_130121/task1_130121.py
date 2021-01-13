@@ -18,7 +18,24 @@ class Person:
         self.lastname = lastname
         self. gender = gender
         self.birthday = birthday
+        self._age = 0
+        self.category = ''
         Person.person_count += 1
+
+    def age(self):
+        pass
+
+    def happy_birthday(self):
+        pass
+
+    def assign_category(self):
+        if self._age < 13:
+            self.category = 'child'
+        elif 12 < self._age < 18:
+            self.category = 'teenager'
+        else:
+            self.category = 'adult'
+        return self.category
 
 
 class Student(Person):
