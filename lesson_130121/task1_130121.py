@@ -57,6 +57,13 @@ class Student(Person):
     def show_diary(self):
         return self.diary
 
+    def average_mark(self):
+        av_mark = 0
+        for i in self.diary:
+            av_mark += i[2]
+        av_mark = av_mark / len(self.diary)
+        return av_mark
+
 
 class Teacher(Person):
     teacher_count = 0
@@ -93,11 +100,12 @@ if __name__ == "__main__":
     teacher1.change_salary(1.05)
     print(teacher1.salary)
     student3.change_group(3)
-    student1.make_mark('11.01.21', 'Математика', '12')
-    student1.make_mark('11.01.21', 'История', '8')
-    student2.make_mark('12.01.21', 'Математика', '10')
-    student3.make_mark('12.01.21', 'География', '9')
-    student3.make_mark('11.01.21', 'История', '11')
+    student1.make_mark('11.01.21', 'Математика', 12)
+    student1.make_mark('11.01.21', 'История', 7)
+    student2.make_mark('12.01.21', 'Математика', 10)
+    student3.make_mark('12.01.21', 'География', 9)
+    student3.make_mark('11.01.21', 'История', 11)
     print(student1.show_diary())
     print(student2.show_diary())
     print(student3.show_diary())
+    print(student1.average_mark())
