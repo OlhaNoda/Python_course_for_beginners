@@ -8,6 +8,7 @@ Try to find as many methods and attributes as you can which belong to different 
 and keep in mind which are common and which are not. For example, the name should be a Person attribute,
 while salary should only be available to the teacher.
 """
+import datetime
 
 
 class Person:
@@ -18,20 +19,25 @@ class Person:
         self.lastname = lastname
         self. gender = gender
         self.birthday = birthday
-        self._age = 0
+        self.age = 0
         self.category = ''
         Person.person_count += 1
 
-    def age(self):
-        pass
+    def age_calculate(self):
+        birth_date = datetime.datetime.strptime(self.birthday, '%Y%m%d').date()
+        self.age = int((datetime.date.today() - birth_date).days / 365)
+        return self.age
 
-    def happy_birthday(self):
-        pass
+    def print_happy_birthday(self):
+        birth_date = datetime.datetime.strptime(self.birthday, '%Y%m%d').date()
+        if datetime.date.today().day == birth_date.day and datetime.date.today().month == birth_date.month:
+            print('Happy birthday!')
 
     def assign_category(self):
-        if self._age < 13:
+        self.age_calculate()
+        if self.age < 13:
             self.category = 'child'
-        elif 12 < self._age < 18:
+        elif 12 < self.age < 18:
             self.category = 'teenager'
         else:
             self.category = 'adult'
@@ -86,11 +92,11 @@ class Teacher(Person):
 
 
 if __name__ == "__main__":
-    student1 = Student('Иван', 'Петренко', 'м', '22.04.12', '2')
-    student2 = Student('Олена', 'Шевченко', 'ж', '03.10.10', '4')
-    student3 = Student('Максим', 'Ткачук', 'м', '05.12.10', '4')
-    teacher1 = Teacher('Нина', 'Иванова', 'ж', '12.03.80', 'Математика', 10000)
-    teacher2 = Teacher('Олег', 'Ткаченко', 'м', '30.07.78', 'История', 10000)
+    student1 = Student('Иван', 'Петренко', 'м', '20120113', '2')
+    student2 = Student('Олена', 'Шевченко', 'ж', '20101003', '4')
+    student3 = Student('Максим', 'Ткачук', 'м', '20101205', '4')
+    teacher1 = Teacher('Нина', 'Иванова', 'ж', '19800312', 'Математика', 10000)
+    teacher2 = Teacher('Олег', 'Ткаченко', 'м', '19780730', 'История', 10000)
     print(f'Количество сутдентов: {Student.student_count}. Количество учителей: {Teacher.teacher_count}')
     teacher1.assign_group(3)
     teacher2.assign_group(2)
@@ -109,3 +115,9 @@ if __name__ == "__main__":
     print(student2.show_diary())
     print(student3.show_diary())
     print(student1.average_mark())
+    print(student1.age_calculate())
+    print(student1.assign_category())
+    print(teacher1.age_calculate())
+    print(teacher1.assign_category())
+    print(teacher2.assign_category())
+    student1.print_happy_birthday()
