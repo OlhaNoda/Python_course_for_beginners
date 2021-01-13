@@ -24,7 +24,7 @@ get_product_info(product_name) - returns a tuple with product name and amount of
 
 class Product:
     def __init__(self, group, name, price):
-        self.group= group
+        self.group = group
         self.name = name
         self.price = price
 
@@ -45,6 +45,7 @@ class ProductStore:
                 self.income += amount * i[2]
             else:
                 pass
+
 
 if __name__ == "__main__":
     p = Product('Sport', 'Football T-Shirt', 100)
