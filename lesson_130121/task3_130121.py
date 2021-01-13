@@ -43,8 +43,6 @@ class ProductStore:
             if i[1] == product_name:
                 i[3] -= amount
                 self.income += amount * i[2]
-            else:
-                pass
 
 
 if __name__ == "__main__":
