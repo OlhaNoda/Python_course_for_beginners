@@ -1,4 +1,4 @@
-#task3_130121
+# task3_130121
 """
 Product Store
 Write a class Product that has three attributes:
@@ -27,22 +27,47 @@ class Product:
         self.group = group
         self.name = name
         self.price = price
+        self.amount = 0
+        self.discount = 0
+
+    def change_amount(self, amount):
+        if self.amount + amount < 0:
+            raise Exception (f'Не хватает {amount - self.amount}')
+        self.amount += amount
 
 
 class ProductStore:
-    def __init__(self):
-        self.price_premium = 1.3
-        self.stock = []
+    def __init__(self, price_premium=1.3):
+        self.price_premium = price_premium
+        self.products = {}
         self.income = 0
 
-    def add(self, product, amount):
-        self.stock.append([product.group, product.name, product.price * self.price_premium, amount])
+    def add(self, product: Product, amount):
+        name = product.name
+        if name not in self.products.keys():
+            self.products[name] = product
+        self.products[name].change_amount(amount)
+
+    def set_discount(self, identifier, percent, identifier_type='name'):
+        if identifier_type == 'name':
+            if identifier not in self.products.keys():
+                raise Exception(f'Товара нет на складе')
+            else:
+                self.products[identifier].discount = percent
 
     def sell_product(self, product_name, amount):
-        for i in self.stock:
-            if i[1] == product_name:
-                i[3] -= amount
-                self.income += amount * i[2]
+        if product_name not in self.products.keys():
+            raise Exception(f'Товара нет на складе')
+        for p in self.products:
+            if p == product_name:
+                self.products[p].change_amount(-amount)
+                self.income += amount * self.products[p].price * ((100-self.products[p].discount)/100)
+
+    def get_income(self):
+        return self.income
+
+    def get_all_products(self):
+        return self.products.values()
 
 
 if __name__ == "__main__":
@@ -51,7 +76,6 @@ if __name__ == "__main__":
     s = ProductStore()
     s.add(p, 10)
     s.add(p2, 300)
-    print(s.stock)
+    s.set_discount('Ramen', 5)
     s.sell_product('Ramen', 10)
-    print(s.stock)
-    print(s.income)
+
