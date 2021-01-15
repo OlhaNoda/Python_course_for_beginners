@@ -34,7 +34,7 @@ def calculate(a, b, action):
 
 
 class Fraction:
-    def __init__(self, value):
+    def __init__(self, value: float):
         self.value = value
 
     def __add__(self, other):
