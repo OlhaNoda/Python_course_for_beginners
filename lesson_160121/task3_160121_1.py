@@ -51,9 +51,9 @@ class Fraction:
 if __name__ == "__main__":
     x = Fraction(1/2)
     y = Fraction(1/4)
-    print(x+y)
-    print(x-y)
-    print(x*y)
-    print(x/y)
+    print(x + y)
+    print(x - y)
+    print(x * y)
+    print(x / y)
 
 
