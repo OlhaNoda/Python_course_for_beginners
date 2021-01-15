@@ -25,8 +25,6 @@ def calculate(a, b, action):
             return a/b
         else:
             return 'Wrong action'
-    except TypeError:
-        return 'Wrong type for operand'
     except ValueError:
         return 'Wrong type for operand'
     except ZeroDivisionError:
