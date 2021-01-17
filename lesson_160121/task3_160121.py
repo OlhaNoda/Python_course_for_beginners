@@ -22,7 +22,7 @@ def reduce_fraction(a: int, b: int):
 
 class Fraction:
     def __init__(self, numerator: int, denominator: int):
-        if not isinstance(numerator, int) and not isinstance(denominator, int):
+        if not isinstance(numerator, int) or not isinstance(denominator, int):
             raise TypeError('Wrong type. The numbers must be integer')
         if denominator == 0:
             raise ZeroDivisionError('The denominator cannot be zero')
