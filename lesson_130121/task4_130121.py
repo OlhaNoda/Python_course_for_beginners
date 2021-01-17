@@ -21,10 +21,10 @@ class CustomException(Exception):
 
 
 if __name__ == "__main__":
-    exept_1 = CustomException('Error 1')
-    exept_2 = CustomException('Error 2')
-    CustomException.add_log_message(exept_1, 'Message1')
-    CustomException.add_log_message(exept_2, 'Message2')
+    except_1 = CustomException('Error 1')
+    except_2 = CustomException('Error 2')
+    CustomException.add_log_message(except_1, 'Message1')
+    CustomException.add_log_message(except_2, 'Message2')
 
 
 
