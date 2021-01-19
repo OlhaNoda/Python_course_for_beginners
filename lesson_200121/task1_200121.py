@@ -8,7 +8,7 @@ For example:
 
 
 def logger(func):
-    def wrapper(* args):
+    def wrapper(*args):
         print(f'{func.__name__} called with {args}')
         return func(*args)
     return wrapper
