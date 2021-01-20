@@ -2,11 +2,13 @@
 """
 Write a decorator that takes a list of stop words and replaces them with * inside the decorated function
 """
+from functools import wraps
 StopList = ['pepsi', 'BMW']
 
 
 def stop_words(words: list):
     def replace_word(func):
+        @wraps(func)
         def wrapper(*args):
             text = func(*args)
             for word in words:

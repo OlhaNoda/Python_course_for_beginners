@@ -5,9 +5,11 @@ NOTE! It should print the function, not the result of its execution!
 For example:
 "add called with 4, 5"
 """
+from functools import wraps
 
 
 def logger(func):
+    @wraps(func)
     def wrapper(*args):
         print(f'{func.__name__} called with {args}')
         return func(*args)

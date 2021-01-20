@@ -8,22 +8,25 @@ contains: [] - list of symbols that an argument should contain
 If some of the rules' checks returns False, the function should return False and print the reason it failed;
 otherwise, return the result.
 """
+from functools import wraps
 
 
 def arg_rules(type_: type, max_length: int, contains: list):
-    def chek_arg(f):
-        def wrapper(arg):
-            if not isinstance(arg, type_):
-                print(f'Arg must be {type_}')
-                return False
-            if len(arg) > max_length:
-                print(f'Max length of arg is {max_length}')
-                return False
-            for c in contains:
-                if arg.find(c) < 0:
-                    print(f'Arg should contain {contains}')
+    def chek_arg(func):
+        @wraps(func)
+        def wrapper(*args):
+            for arg in args:
+                if not isinstance(arg, type_):
+                    print(f'Arg must be {type_}')
                     return False
-            return f(arg)
+                if len(arg) > max_length:
+                    print(f'Max length of arg is {max_length}')
+                    return False
+                for c in contains:
+                    if arg.find(c) < 0:
+                        print(f'Arg should contain {contains}')
+                        return False
+            return func(*args)
         return wrapper
     return chek_arg
 
