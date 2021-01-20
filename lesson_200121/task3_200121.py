@@ -28,5 +28,5 @@ def create_slogan(name: str):
 
 
 if __name__ == "__main__":
-    create_slogan('johndo@05egma')
+    print(create_slogan('johndo@05egma'))
 
