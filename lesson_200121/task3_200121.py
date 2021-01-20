@@ -13,11 +13,17 @@ otherwise, return the result.
 def arg_rules(type_: type, max_length: int, contains: list):
     def chek_arg(f):
         def wrapper(arg):
-            k = 0
-            if isinstance(arg, type_) and len(arg) <= max_length and sum([k+1 for c in contains if c in arg]) == len(contains):
-                return f(arg)
-            print(f'Arg must be {type_}\nMax length of arg is {max_length}\nArg should contain {contains}')
-            return False
+            if not isinstance(arg, type_):
+                print(f'Arg must be {type_}')
+                return False
+            if len(arg) > max_length:
+                print(f'Max length of arg is {max_length}')
+                return False
+            for c in contains:
+                if arg.find(c) < 0:
+                    print(f'Arg should contain {contains}')
+                    return False
+            return f(arg)
         return wrapper
     return chek_arg
 
@@ -28,5 +34,5 @@ def create_slogan(name: str):
 
 
 if __name__ == "__main__":
-    print(create_slogan('johndo@05egma'))
+    print(create_slogan('qw05erty@'))
 
