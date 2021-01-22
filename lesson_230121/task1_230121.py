@@ -17,14 +17,11 @@ class Person:
 
     @classmethod
     def validate_email(cls, email):
-        answer = ''
-        if email.find('@') > 0:
-            answer = 'Valid'
-        else:
-            answer = 'Not valid'
-        return answer
+        if email.count('@') > 1 or email.count('@') == 0:
+            return False, 'Неверное количество знаков @'
+        return True
 
 
 if __name__ == "__main__":
-    p = Person('Steve', 'etetet@ururu')
+    p = Person('Steve', 'etetet@@ururu')
     print(p.validate_email(p.email))
