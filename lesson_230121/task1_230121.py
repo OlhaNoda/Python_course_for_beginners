@@ -17,11 +17,32 @@ class Person:
 
     @classmethod
     def validate_email(cls, email):
+        # Проверка на наличие символа @
         if email.count('@') > 1 or email.count('@') == 0:
-            return False, 'Неверное количество знаков @'
+            return False, 'Неверное количество символов @'
+        # Проверка на наличие точки в доменном имени
+        [prefix, domain] = email.split('@')
+        if domain.count('.') == 0:
+            return False, 'Доменное имя не содержит точки'
+        # Проверка длины доменного имени
+        if len(domain) < 2:
+            return False, 'Доменное имя короче 2 символов'
+        # Проверка на наличие точки в начале или конце имени
+        if prefix[0] == '.' or prefix[-1] == '.':
+            return False, 'Имя начинается или заканчивается точкой'
+        # Проверка на наличие двух точек подряд в имени
+        dot = False
+        for symbol in prefix:
+            if symbol == '.':
+                if dot:
+                    return False, 'Имя содержит две или более точек подряд'
+                else:
+                    dot = True
+            else:
+                dot = False
         return True
 
 
 if __name__ == "__main__":
-    p = Person('Steve', 'etetet@@ururu')
+    p = Person('Steve', 'jj.et@qwerty.com')
     print(p.validate_email(p.email))
