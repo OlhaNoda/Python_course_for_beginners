@@ -18,15 +18,10 @@ class Boss:
         self.workers = []
 
     def __str__(self):
-        return f'Name: {self.name}\nCompany: {self.company}\nWorkers: {self.workers}'
+        return f'Boss name: {self.name}, Workers: {self.workers}'
 
     def __repr__(self):
         return f'{self.name}'
-
-    def add_worker(self, worker: Worker):
-        self.workers.append(worker)
-        worker.boss = self
-        return self.workers
 
 
 class Worker:
@@ -38,31 +33,33 @@ class Worker:
         boss.workers.append(self)
 
     def __str__(self):
-        return f'Name: {self.name}\nCompany: {self.company}\nBoss: {self.boss.name}'
+        return f'Worker name: {self.name}, Boss: {self.boss.name}'
 
     def __repr__(self):
         return f'{self.name}'
 
-    def change_boss(self, new_boss: Boss):
+    @property
+    def worker_boss(self):
+        return self.boss
+
+    @worker_boss.setter
+    def worker_boss(self, new_boss):
         if isinstance(new_boss, Boss):
             self.boss.workers.remove(self)
             self.boss = new_boss
             self.boss.workers.append(self)
-            return self.boss
-        else:
-            return False
 
 
 if __name__ == "__main__":
     b1 = Boss(1, 'Steve', 'Samsung')
     b2 = Boss(2, 'Carl', 'Samsung')
-    w1 = Worker(1, 'Bob', 'Samsung', b1)
-    w1.change_boss(b2)
+    w1 = Worker(1, 'Jay', 'Samsung', b1)
+    w2 = Worker(2, 'Bob', 'Samsung', b1)
+    w3 = Worker(3, 'Anna', 'Samsung', b2)
+    w1.worker_boss = b2
+    w3.worker_boss = b1
     print(b1)
     print(b2)
     print(w1)
-
-
-
-
-
+    print(w2)
+    print(w3)
