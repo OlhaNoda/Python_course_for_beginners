@@ -19,8 +19,7 @@ class TypeDecorators:
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
-                args = (int(arg) for arg in args)
-                return func(*args, **kwargs)
+                return int(func(*args, **kwargs))
             except ValueError:
                 return False, 'error'
         return wrapper
@@ -29,16 +28,14 @@ class TypeDecorators:
     def to_str(cls, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            args = (str(arg) for arg in args)
-            return func(*args, **kwargs)
+            return str(func(*args, **kwargs))
         return wrapper
 
     @classmethod
     def to_bool(cls, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            args = (bool(arg) for arg in args)
-            return func(*args, **kwargs)
+            return bool(func(*args, **kwargs))
         return wrapper
 
     @classmethod
@@ -46,8 +43,7 @@ class TypeDecorators:
         @wraps(func)
         def wrapper(*args, **kwargs):
             try:
-                args = (float(arg) for arg in args)
-                return func(*args, **kwargs)
+                return float(func(*args, **kwargs))
             except ValueError:
                 return False, 'error'
         return wrapper
