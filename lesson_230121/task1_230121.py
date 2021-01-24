@@ -15,8 +15,8 @@ class Person:
         self.email = email
         Person.validate_email(self.email)
 
-    @classmethod
-    def validate_email(cls, email):
+    @staticmethod
+    def validate_email(email):
         # Проверка на наличие символа @
         if email.count('@') > 1 or email.count('@') == 0:
             return False, 'Неверное количество символов @'
