@@ -3,7 +3,6 @@
 Create your own implementation of an iterable, which could be used inside for-in loop.
 Also, add logic for retrieving elements using square brackets syntax.
 """
-
 my_list = [5, 10, 15, 20]
 
 
