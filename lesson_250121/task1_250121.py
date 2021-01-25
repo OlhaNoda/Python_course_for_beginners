@@ -15,6 +15,6 @@ def with_index(iterable, start=0):
 
 if __name__ == "__main__":
     print(enumerate(iterable_object, start))
-    print(with_index(iterable_object, start))
     print(list(enumerate(iterable_object, start)))
+    print(with_index(iterable_object, start))
     print(list(with_index(iterable_object, start)))
