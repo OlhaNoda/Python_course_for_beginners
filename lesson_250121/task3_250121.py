@@ -7,15 +7,19 @@ Also, add logic for retrieving elements using square brackets syntax.
 my_list = [5, 10, 15, 20]
 
 
-def my_for_in(iterable):
+def action_for_in(iterable, action):
     iterator = iter(iterable)
     iterating_finished = False
     while not iterating_finished:
         try:
-            print(next(iterator))
+            yield action(next(iterator))
         except StopIteration:
             iterating_finished = True
 
 
+def power_to_2(number):
+    return number ** 2
+
+
 if __name__ == "__main__":
-    my_for_in(my_list)
+    print(list(action_for_in(my_list, power_to_2)))
