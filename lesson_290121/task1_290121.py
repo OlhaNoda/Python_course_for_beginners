@@ -1,11 +1,11 @@
-# task1_250121
+# task1_290121
 """
 Create your own implementation of a built-in function enumerate, named `with_index`,
 which takes two parameters: `iterable` and `start`, default is 0.
 Tips: see the documentation for the enumerate function
 """
-iterable_object = 'qwerty'
-start = 1
+my_iterable = 'qwerty'
+my_start = 1
 
 # way_1
 class MyEnumerate:
@@ -34,8 +34,8 @@ def with_index(iterable, start=0):
 
 
 if __name__ == "__main__":
-    my_enum1 = MyEnumerate(iterable_object, start)
+    my_enum1 = MyEnumerate(my_iterable, my_start)
     for i in my_enum1:
-        print(i)
+        print(i, end=' ')
 
-    print(list(with_index(iterable_object, start)))
+    print(list(with_index(my_iterable, my_start)))
