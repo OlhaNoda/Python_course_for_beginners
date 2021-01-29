@@ -25,6 +25,10 @@ class MyRange:
         value = self.start
         self.start += self.step
         return value
+"""
+    def __contains__(self, item):
+        pass
+"""
 
 # way_2
 def in_range(start, end, step=1):
@@ -34,7 +38,9 @@ def in_range(start, end, step=1):
 
 
 if __name__ == "__main__":
-    my_range1 = MyRange(my_start, my_end, my_step)
-    for i in my_range1:
-        print(i, end=' ')
-    print(list(in_range(my_start, my_end, my_step)))
+    my_range = MyRange(my_start, my_end, my_step)
+    if 2 in my_range:
+        print('OK')
+
+    if 2 in in_range(my_start, my_end, my_step):
+        print('OK')
