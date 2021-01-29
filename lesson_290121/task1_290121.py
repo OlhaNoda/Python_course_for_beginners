@@ -7,7 +7,7 @@ Tips: see the documentation for the enumerate function
 my_iterable = 'qwerty'
 my_start = 1
 
-# way_1
+
 class MyEnumerate:
 
     def __init__(self, iterable, start=0):
@@ -27,15 +27,8 @@ class MyEnumerate:
         self.index += 1
         return number, element
 
-# way_2
-def with_index(iterable, start=0):
-    for i in range(len(iterable)):
-        yield start+i, iterable[i]
-
 
 if __name__ == "__main__":
     my_enum1 = MyEnumerate(my_iterable, my_start)
     for i in my_enum1:
-        print(i, end=' ')
-
-    print(list(with_index(my_iterable, my_start)))
+        print(i)
