@@ -20,6 +20,7 @@ class MyIterator:
         value = self.iterable[self.index]
         self.index += 1
         return value
+
 # way_2
 def my_generator(*args):
     iterator = iter(args)
