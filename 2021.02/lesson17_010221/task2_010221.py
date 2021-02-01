@@ -18,9 +18,9 @@ class PhoneBookTestCase(unittest.TestCase):
         self.assertIn(new_entry, app.read_file(phone_book))
 
     def test_delete_contact(self):
-        deleted_entry = app.read_file(phone_book)[0]
-        app.delete_contacts(phone_book, deleted_entry)
-        self.assertNotIn(deleted_entry, app.read_file(phone_book))
+        deleted_entries = [app.read_file(phone_book)[0]]
+        app.delete_contacts(phone_book, deleted_entries)
+        self.assertNotIn(deleted_entries, app.read_file(phone_book))
 
     def test_search_contact_by_phone(self):
         found_contacts = app.make_search_contact_list(phone_book, 'p', '123456789')
