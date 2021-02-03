@@ -6,5 +6,4 @@ Is it possible to change it from within Python? If so, does it affect where Pyth
 Run some interactive tests to find it out.
 """
 import sys
-my_list = sys.path
-print(my_list)
+print(sys.path)
