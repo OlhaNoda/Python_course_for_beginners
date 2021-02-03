@@ -23,3 +23,16 @@ def make_volume_threedimensional_shape(shape: str):
 
 if __name__ == "__main__":
     print(make_volume_threedimensional_shape('конус')(1.52, 2))
+
+
+# way_2
+def action_for_in(iterable: list):
+    if not isinstance(iterable, list):
+        raise TypeError
+    iterator = iter(iterable)
+    iterating_finished = False
+    while not iterating_finished:
+        try:
+            yield next(iterator)
+        except StopIteration:
+            iterating_finished = True
