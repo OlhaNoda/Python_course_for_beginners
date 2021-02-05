@@ -11,9 +11,9 @@ from task1_060221 import OpenFile
 
 class OpenFileTestCase(unittest.TestCase):
     def setUp(self):
-        self.my_open_file_for_read = OpenFile('my_file.txt', 'r')
-        self.my_open_file_for_write = OpenFile('my_file.txt', 'w')
-        self.my_open_file_for_append = OpenFile('my_file.txt', 'a')
+        self.open_file_for_read = OpenFile('my_file.txt', 'r')
+        self.open_file_for_write = OpenFile('my_file.txt', 'w')
+        self.open_file_for_append = OpenFile('my_file.txt', 'a')
 
     @staticmethod
     def get_contents_file(file_name):
@@ -21,19 +21,27 @@ class OpenFileTestCase(unittest.TestCase):
             file_contests = f.read()
         return file_contests
 
+    def test_file_not_found(self):
+        with self.assertRaises(FileNotFoundError):
+            OpenFile('aaa.txt', 'r')
+
+    def test_open_file_with_wrong_action(self):
+        with self.assertRaises(ValueError):
+            OpenFile('my_file.txt', 'q')
+
     def test_open_file_for_read(self):
-        with self.my_open_file_for_read as my_f:
+        with self.open_file_for_read as my_f:
             my_file_contests = my_f.read()
         self.assertEqual(my_file_contests, self.get_contents_file('my_file.txt'))
 
     def test_open_file_for_write(self):
-        with self.my_open_file_for_write as my_f:
+        with self.open_file_for_write as my_f:
             my_f.write('Hello\n')
         self.assertEqual('Hello\n', self.get_contents_file('my_file.txt'))
 
     def test_open_file_for_append(self):
         contests_file_plus = self.get_contents_file('my_file.txt') + 'World\n'
-        with self.my_open_file_for_append as my_f:
+        with self.open_file_for_append as my_f:
             my_f.write('World\n')
         self.assertEqual(self.get_contents_file('my_file.txt'), contests_file_plus)
 

@@ -8,6 +8,8 @@ Pay special attention to the implementation of `__exit__` method,
 which has to cover all the requirements to context managers mentioned here:
 """
 from datetime import datetime
+import os
+
 log_file = 'logs.txt'
 text_file = 'my_file.txt'
 
@@ -15,7 +17,10 @@ text_file = 'my_file.txt'
 class OpenFile:
 
     def __init__(self, file_name, action):
-        self.file_name = file_name
+        if os.path.exists(file_name):
+            self.file_name = file_name
+        else:
+            raise FileNotFoundError('FileNotFound')
         if action in ['r', 'w', 'a']:
             self.action = action
         else:
