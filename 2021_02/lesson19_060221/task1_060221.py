@@ -37,14 +37,3 @@ class OpenFile:
         self.log_close_file()
         self.f.close()
         self.logs.close()
-
-
-if __name__ == "__main__":
-    with OpenFile(text_file, 'w') as f:
-        f.write('Hello\n')
-
-    with OpenFile(text_file, 'a') as f:
-        f.write('World\n')
-
-    with OpenFile(text_file, 'r') as f:
-        f.read()

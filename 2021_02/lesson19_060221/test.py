@@ -32,10 +32,10 @@ class OpenFileTestCase(unittest.TestCase):
         self.assertEqual('Hello\n', self.get_contents_file('my_file.txt'))
 
     def test_open_file_for_append(self):
+        contests_file_plus = self.get_contents_file('my_file.txt') + 'World\n'
         with self.my_open_file_for_append as my_f:
             my_f.write('World\n')
-        self.assertEqual('Hello\n', self.get_contents_file('my_file.txt'))
-
+        self.assertEqual(self.get_contents_file('my_file.txt'), contests_file_plus)
 
 
 if __name__ == "__main__":
