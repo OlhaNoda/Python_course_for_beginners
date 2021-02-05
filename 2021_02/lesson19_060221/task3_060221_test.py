@@ -9,10 +9,22 @@ Create pytest fixture, which uses your implementation of the context manager to 
 which could be used inside your function.
 """
 
-import math
 import pytest
+import math
 
 
+@pytest.mark.square
 def test_sqrt():
     num = 25
     assert math.sqrt(num) == 5
+
+
+@pytest.mark.square
+def test_square():
+    num = 7
+    assert 7*7 == 40
+
+
+@pytest.mark.others
+def test_equality():
+    assert 10 == 11
