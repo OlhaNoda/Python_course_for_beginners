@@ -46,5 +46,6 @@ class OpenFileTestCase(unittest.TestCase):
         self.assertEqual(self.get_contents_file('my_file.txt'), contests_file_plus)
 
 
+
 if __name__ == "__main__":
     unittest.main()
