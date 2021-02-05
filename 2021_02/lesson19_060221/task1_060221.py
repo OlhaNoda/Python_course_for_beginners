@@ -16,7 +16,10 @@ class OpenFile:
 
     def __init__(self, file_name, action):
         self.file_name = file_name
-        self.action = action
+        if action in ['r', 'w', 'a']:
+            self.action = action
+        else:
+            raise ValueError('Wrong action. Choose "r", "w" or "a"')
         self.logs = open('logs.txt', 'a')
 
     def log_open_file(self):
