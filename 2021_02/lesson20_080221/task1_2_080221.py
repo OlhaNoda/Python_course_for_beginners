@@ -1,12 +1,9 @@
 from typing import Any, Optional, Sequence
 
-my_iterable = 'qwerty'
-my_start = 1
-
 
 class MyEnumerate:
 
-    def __init__(self, iterable: Sequence, start: int = 0) -> None:
+    def __init__(self, iterable: Sequence[Any], start: int = 0) -> None:
         self.iterable = iterable
         self.start = start
         self._index: int = 0
