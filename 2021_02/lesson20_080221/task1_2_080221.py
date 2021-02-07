@@ -1,4 +1,4 @@
-from typing import Any, Sequence
+from typing import Any, Optional, Sequence
 
 my_iterable = 'qwerty'
 my_start = 1
@@ -14,7 +14,7 @@ class MyEnumerate:
     def __iter__(self) -> 'MyEnumerate':
         return self
 
-    def __next__(self) -> tuple[int, Any]:
+    def __next__(self) -> Optional[tuple[int, Any]]:
         if self.start > len(self.iterable):
             raise StopIteration
         number = self.start
