@@ -8,13 +8,13 @@ which you have done during the course, and annotate this code with type hints, u
 import json
 
 
-def read_file(file_name: str) -> list:
+def read_file(file_name: str) -> list[dict]:
     with open(file_name) as file_object:
         load_file = json.load(file_object)
         return load_file
 
 
-def rewrite_file(file_name: str, new_content: list) -> None:
+def rewrite_file(file_name: str, new_content: list[dict]) -> None:
     with open(file_name, 'w') as file_object:
         json.dump(new_content, file_object)
 
@@ -25,7 +25,7 @@ def print_contact(contact: dict) -> None:
         print('|', k, ':', v)
 
 
-def print_contact_list(contact_list: list) -> None:
+def print_contact_list(contact_list: list[dict]) -> None:
     for contact in contact_list:
         print_contact(contact)
 
@@ -77,7 +77,7 @@ def dict_parameters() -> dict:
     return parameters
 
 
-def make_search_contact_list(file_name: str, search_parameter: str, search_value: str) -> list:
+def make_search_contact_list(file_name: str, search_parameter: str, search_value: str) -> list[dict]:
     parameters = dict_parameters()
     load_file = read_file(file_name)
     search_contact_list = []
@@ -89,14 +89,14 @@ def make_search_contact_list(file_name: str, search_parameter: str, search_value
     return search_contact_list
 
 
-def delete_contacts(file_name: str, deleted_contact_list: list) -> None:
+def delete_contacts(file_name: str, deleted_contact_list: list[dict]) -> None:
     load_file = read_file(file_name)
     for contact in deleted_contact_list:
         load_file.remove(contact)
     rewrite_file(file_name, load_file)
 
 
-def change_contacts(change_contact_list: list) -> list:
+def change_contacts(change_contact_list: list[dict]) -> list[dict]:
     for contact in change_contact_list:
         new_contact = input_contact()
         for k in new_contact.keys():
