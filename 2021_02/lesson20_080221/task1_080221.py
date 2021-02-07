@@ -103,29 +103,3 @@ def change_contacts(change_contact_list: list[dict]) -> list[dict]:
             if new_contact[k]:
                 contact[k] = new_contact[k]
     return change_contact_list
-
-
-if __name__ == "__main__":
-    phone_book = 'phone_book.json'
-    action = input('Выберите действие для работы с телефонной книгой:\n'
-                   '1. Показать всю телефонную книгу\n2. Добавить новый контакт\n'
-                   '3. Найти контакт\n4. Удалить контакт по номеру телефона \n'
-                   '5. Обновить контакт по номеру телефона\n6. Выйти из программы\n')
-    if action == '1':
-        print_file(phone_book)
-    elif action == '2':
-        add_contact(phone_book, input_contact())
-    elif action == '3':
-        found_contacts = make_search_contact_list(phone_book, input_search_parameter(), input_search_value())
-        print_contact_list(found_contacts)
-    elif action == '4':
-        contacts_by_phone = make_search_contact_list(phone_book, 'p', input_search_value())
-        delete_contacts(phone_book, contacts_by_phone)
-    elif action == '5':
-        contacts_by_phone = make_search_contact_list(phone_book, 'p', input_search_value())
-        print_contact_list(contacts_by_phone)
-        delete_contacts(phone_book, contacts_by_phone)
-        for contact in change_contacts(contacts_by_phone):
-            add_contact(phone_book, contact)
-    else:
-        print('Выход')
