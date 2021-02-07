@@ -6,6 +6,7 @@ which you have done during the course, and annotate this code with type hints, u
 """
 
 import json
+from typing import Optional
 
 
 def read_file(file_name: str) -> list[dict]:
@@ -77,7 +78,7 @@ def dict_parameters() -> dict:
     return parameters
 
 
-def make_search_contact_list(file_name: str, search_parameter: str, search_value: str) -> list[dict]:
+def make_search_contact_list(file_name: str, search_parameter: str, search_value: str) -> Optional[list[dict]]:
     parameters = dict_parameters()
     load_file = read_file(file_name)
     search_contact_list = []
