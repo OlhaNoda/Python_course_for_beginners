@@ -21,37 +21,25 @@ def count_places(number: int) -> int:
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
-def shift_digits_right(number: int, step: int = 1) -> int:
+def shift_digits_right(number: int, step: int, flag=0) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
         raise TypeError(f'The function {shift_digits_right.__name__} works only with number: int, step: int')
     if step < 0:
         raise ValueError(f'The function {shift_digits_right.__name__} works only with step >= 0')
-    places = count_places(number)
-    while step > 0:
-        last_digit = number % 10  # определение последней цифры в числе
-        number //= 10  # отбрасывание последней цифры из числа
-        number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
-        step -= 1
-    return number
-
-
-# Сдвиг цифр в числе влево на заданное количество шагов
-def shift_digits_left(number: int, step: int = 1) -> int:
-    if not isinstance(number, int) or not isinstance(step, int):
-        raise TypeError(f'The function {shift_digits_left.__name__} works only with number: int, step: int')
-    if step < 0:
-        raise ValueError(f'The function {shift_digits_left.__name__} works only with step >= 0')
-    places = count_places(number)
-    while step > 0:
-        first_digit = number // 10**(places-1)  # определение первой цифры в числе
-        number %= 10**(places-1)  # отбрасывание первой цифры из числа
-        number = number * 10 + first_digit  # изменение числа - первая цифра становится последней
-        step -= 1
-    return number
+    if flag != 0 and flag != 1:
+        raise ValueError(f'The function {shift_digits_right.__name__} works only with flag = 0 or flag = 1')
+    places = count_places(number) + flag
+    flag = 0
+    if step == 0:
+        return number
+    last_digit = number % 10  # определение последней цифры в числе
+    if last_digit == 0:
+        flag = 1
+    number //= 10  # отбрасывание последней цифры из числа
+    number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
+    return shift_digits_right(number, step - 1, flag)
 
 
 if __name__ == "__main__":
     assert shift_digits_right(1035, 3) == 351
     assert shift_digits_right(1035, 4) == 1035
-    assert shift_digits_left(1035, 1) == 351
-    assert shift_digits_left(1035, 2) == 3510
