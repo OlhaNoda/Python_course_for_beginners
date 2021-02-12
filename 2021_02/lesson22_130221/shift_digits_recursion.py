@@ -10,25 +10,25 @@
 
 # Определение количества разрядов в числе
 # f(2) -> 1, f(23) -> 2, f(231) -> 3, f(2310) -> 4 и т.д.
-def count_places(number: int) -> int:
+def count_places_recursive(number: int) -> int:
     if not isinstance(number, int):
-        raise TypeError(f'The function {count_places.__name__} works only with number: int')
+        raise TypeError(f'The function {count_places_recursive.__name__} works only with number: int')
     if number < 0:
-        raise ValueError(f'The function {count_places.__name__} works only with number > 0')
+        raise ValueError(f'The function {count_places_recursive.__name__} works only with number > 0')
     if number == 0:
         return 0
-    return 1 + count_places(number // 10)
+    return 1 + count_places_recursive(number // 10)
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
-def shift_digits_right(number: int, step: int, flag=0) -> int:
+def shift_digits_right_recursive(number: int, step: int, flag=0) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
-        raise TypeError(f'The function {shift_digits_right.__name__} works only with number: int, step: int')
+        raise TypeError(f'The function {shift_digits_right_recursive.__name__} works only with number: int, step: int')
     if step < 0:
-        raise ValueError(f'The function {shift_digits_right.__name__} works only with step >= 0')
+        raise ValueError(f'The function {shift_digits_right_recursive.__name__} works only with step >= 0')
     if flag != 0 and flag != 1:
-        raise ValueError(f'The function {shift_digits_right.__name__} works only with flag = 0 or flag = 1')
-    places = count_places(number) + flag
+        raise ValueError(f'The function {shift_digits_right_recursive.__name__} works only with flag = 0 or flag = 1')
+    places = count_places_recursive(number) + flag
     flag = 0
     if step == 0:
         return number
@@ -37,9 +37,9 @@ def shift_digits_right(number: int, step: int, flag=0) -> int:
         flag = 1
     number //= 10  # отбрасывание последней цифры из числа
     number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
-    return shift_digits_right(number, step - 1, flag)
+    return shift_digits_right_recursive(number, step - 1, flag)
 
 
 if __name__ == "__main__":
-    assert shift_digits_right(1035, 3) == 351
-    assert shift_digits_right(1035, 4) == 1035
+    assert shift_digits_right_recursive(1035, 3) == 351
+    assert shift_digits_right_recursive(1035, 4) == 1035
