@@ -15,8 +15,7 @@ def to_power_recursive(x: Union[int, float], exp: int) -> Union[int, float]:
         raise ValueError(f'The function {to_power_recursive.__name__} works only with exp > 0')
     if exp == 1:
         return x
-    if exp != 1:
-        return x * to_power_recursive(x, exp - 1)
+    return x * to_power_recursive(x, exp - 1)
 
 
 if __name__ == "__main__":

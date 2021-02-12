@@ -9,15 +9,16 @@
 
 
 # Определение количества разрядов в числе
-# f(2) -> 1, f(23) -> 10, f(231) -> 100, f(2310) -> 1000 и т.д.
-def count_place(number: int) -> int:
+# f(2) -> 1, f(23) -> 2, f(231) -> 3, f(2310) -> 4 и т.д.
+def count_places(number: int) -> int:
     if not isinstance(number, int):
-        raise TypeError(f'The function {count_place.__name__} works only with number: int')
-    place = 1
-    while number >= 10:
-        number //= 10
-        place *= 10
-    return place
+        raise TypeError(f'The function {count_places.__name__} works only with number: int')
+    if number < 0:
+        raise ValueError(f'The function {count_places.__name__} works only with number > 0')
+    if number == 0:
+        return 0
+    number //= 10
+    return 1 + count_places(number)
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
@@ -26,11 +27,11 @@ def shift_digits_right(number: int, step: int = 1) -> int:
         raise TypeError(f'The function {shift_digits_right.__name__} works only with number: int, step: int')
     if step < 0:
         raise ValueError(f'The function {shift_digits_right.__name__} works only with step >= 0')
-    place = count_place(number)
+    places = count_places(number)
     while step > 0:
         last_digit = number % 10  # определение последней цифры в числе
         number //= 10  # отбрасывание последней цифры из числа
-        number += last_digit * place  # изменение числа - последняя цифра становится первой
+        number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
         step -= 1
     return number
 
@@ -41,10 +42,10 @@ def shift_digits_left(number: int, step: int = 1) -> int:
         raise TypeError(f'The function {shift_digits_left.__name__} works only with number: int, step: int')
     if step < 0:
         raise ValueError(f'The function {shift_digits_left.__name__} works only with step >= 0')
-    place = count_place(number)
+    places = count_places(number)
     while step > 0:
-        first_digit = number // place  # определение первой цифры в числе
-        number %= place  # отбрасывание первой цифры из числа
+        first_digit = number // 10**(places-1)  # определение первой цифры в числе
+        number %= 10**(places-1)  # отбрасывание первой цифры из числа
         number = number * 10 + first_digit  # изменение числа - первая цифра становится последней
         step -= 1
     return number
