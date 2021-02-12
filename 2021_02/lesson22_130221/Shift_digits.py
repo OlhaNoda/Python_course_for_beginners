@@ -17,8 +17,7 @@ def count_places(number: int) -> int:
         raise ValueError(f'The function {count_places.__name__} works only with number > 0')
     if number == 0:
         return 0
-    number //= 10
-    return 1 + count_places(number)
+    return 1 + count_places(number // 10)
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
