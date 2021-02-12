@@ -10,9 +10,9 @@ from typing import Union
 
 def to_power_recursive(x: Union[int, float], exp: int) -> Union[int, float]:
     if not isinstance(x, int) and not isinstance(x, float) or not isinstance(exp, int):
-        raise TypeError(f'This function {to_power_recursive.__name__} works only with x: Union[int, float], exp: int')
+        raise TypeError(f'The function {to_power_recursive.__name__} works only with x: Union[int, float], exp: int')
     if exp <= 0:
-        raise ValueError(f'This function {to_power_recursive.__name__} works only with exp > 0')
+        raise ValueError(f'The function {to_power_recursive.__name__} works only with exp > 0')
     if exp == 1:
         return x
     if exp != 1:

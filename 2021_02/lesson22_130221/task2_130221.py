@@ -7,7 +7,7 @@ All tasks should be solved using recursion
 
 def is_palindrome_recursive(looking_str: str) -> bool:
     if not isinstance(looking_str, str):
-        raise TypeError(f'This function {is_palindrome_recursive.__name__} works only with looking_str: str')
+        raise TypeError(f'The function {is_palindrome_recursive.__name__} works only with looking_str: str')
     if len(looking_str) < 1:
         return True
     if looking_str[0] == looking_str[-1]:

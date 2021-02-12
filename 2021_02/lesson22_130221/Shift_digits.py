@@ -9,9 +9,10 @@
 
 
 # Определение количества разрядов в числе
+# f(2) -> 1, f(23) -> 10, f(231) -> 100, f(2310) -> 1000 и т.д.
 def count_place(number: int) -> int:
     if not isinstance(number, int):
-        raise TypeError(f'This function {count_place.__name__} works only with number: int')
+        raise TypeError(f'The function {count_place.__name__} works only with number: int')
     place = 1
     while number >= 10:
         number //= 10
@@ -22,9 +23,9 @@ def count_place(number: int) -> int:
 # Сдвиг цифр в числе вправо на заданное количество шагов
 def shift_digits_right(number: int, step: int = 1) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
-        raise TypeError(f'This function {shift_digits_right.__name__} works only with number: int, step: int')
+        raise TypeError(f'The function {shift_digits_right.__name__} works only with number: int, step: int')
     if step < 0:
-        raise ValueError(f'This function {shift_digits_right.__name__} works only with step >= 0')
+        raise ValueError(f'The function {shift_digits_right.__name__} works only with step >= 0')
     place = count_place(number)
     while step > 0:
         last_digit = number % 10  # определение последней цифры в числе
@@ -37,9 +38,9 @@ def shift_digits_right(number: int, step: int = 1) -> int:
 # Сдвиг цифр в числе влево на заданное количество шагов
 def shift_digits_left(number: int, step: int = 1) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
-        raise TypeError(f'This function {shift_digits_left.__name__} works only with number: int, step: int')
+        raise TypeError(f'The function {shift_digits_left.__name__} works only with number: int, step: int')
     if step < 0:
-        raise ValueError(f'This function {shift_digits_left.__name__} works only with step >= 0')
+        raise ValueError(f'The function {shift_digits_left.__name__} works only with step >= 0')
     place = count_place(number)
     while step > 0:
         first_digit = number // place  # определение первой цифры в числе

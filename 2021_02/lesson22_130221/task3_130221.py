@@ -8,9 +8,9 @@ All tasks should be solved using recursion
 
 def mult_recursive(a: int, n: int) -> int:
     if not isinstance(a, int) or not isinstance(n, int):
-        raise TypeError(f'This function {mult_recursive.__name__} works only with a: int, n: int')
+        raise TypeError(f'The function {mult_recursive.__name__} works only with a: int, n: int')
     if n < 0:
-        raise ValueError(f'This function {mult_recursive.__name__} works only with n >= 0')
+        raise ValueError(f'The function {mult_recursive.__name__} works only with n >= 0')
     if n == 0:
         return 0
     return a + mult_recursive(a, n-1)
