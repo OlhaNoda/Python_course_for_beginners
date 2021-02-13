@@ -21,23 +21,24 @@ def count_places_recursive(number: int) -> int:
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
-def shift_digits_right_recursive(number: int, step: int, flag=0) -> int:
+def shift_digits_right_recursive(number: int, step: int) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
         raise TypeError(f'The function {shift_digits_right_recursive.__name__} works only with number: int, step: int')
     if step < 0:
         raise ValueError(f'The function {shift_digits_right_recursive.__name__} works only with step >= 0')
-    if flag != 0 and flag != 1:
-        raise ValueError(f'The function {shift_digits_right_recursive.__name__} works only with flag = 0 or flag = 1')
-    places = count_places_recursive(number) + flag
-    flag = 0
+    places = count_places_recursive(number)
     if step == 0:
         return number
     last_digit = number % 10  # определение последней цифры в числе
-    if last_digit == 0:
-        flag = 1
-    number //= 10  # отбрасывание последней цифры из числа
-    number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
-    return shift_digits_right_recursive(number, step - 1, flag)
+    if last_digit == 0 and step != 1:  # если последняя цифра 0 и это не последний шаг
+        last_digits = number % 100  # определение последних двух цифр в числе
+        number //= 100  # отбрасывание последних двух цифр из числа
+        number += last_digits * 10**(places-2)  # изменение числа - последние две цифры становятся первыми
+        return shift_digits_right_recursive(number, step - 2)
+    else:
+        number //= 10  # отбрасывание последней цифры из числа
+        number += last_digit * 10**(places-1)  # изменение числа - последняя цифра становится первой
+        return shift_digits_right_recursive(number, step - 1)
 
 
 if __name__ == "__main__":
