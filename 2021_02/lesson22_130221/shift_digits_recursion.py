@@ -21,7 +21,7 @@ def count_places_recursive(number: int) -> int:
 
 
 # Сдвиг цифр в числе вправо на заданное количество шагов
-def shift_digits_right_recursive(number: int, step: int) -> int:
+def shift_digits_right_recursive(number: int, step: int = 1) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
         raise TypeError(f'The function {shift_digits_right_recursive.__name__} works only with number: int, step: int')
     if step < 0:
