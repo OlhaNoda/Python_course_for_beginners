@@ -5,3 +5,9 @@
 2021-02-06 01:09:52.933142: my_file.txt was closed
 2021-02-06 01:09:52.933591: my_file.txt was opened for w
 2021-02-06 01:09:52.933609: my_file.txt was closed
+2021-02-06 01:46:22.099635: my_file.txt was opened for a
+2021-02-06 01:46:22.099668: my_file.txt was closed
+2021-02-06 01:46:22.100801: my_file.txt was opened for r
+2021-02-06 01:46:22.100885: my_file.txt was closed
+2021-02-06 01:46:22.101582: my_file.txt was opened for w
+2021-02-06 01:46:22.101611: my_file.txt was closed
