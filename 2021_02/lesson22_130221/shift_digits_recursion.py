@@ -41,6 +41,7 @@ def shift_digits_right_recursive(number: int, step: int = 1) -> int:
         return shift_digits_right_recursive(number, step - 1)
 
 
+
 # Сдвиг цифр в числе вправо на заданное количество шагов
 def shift_digits_right_recursive_flag(number: int, step: int, flag=0) -> int:
     if not isinstance(number, int) or not isinstance(step, int):
