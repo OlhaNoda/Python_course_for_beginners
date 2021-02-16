@@ -4,6 +4,15 @@
 """
 
 
+# функция преобразует результат функции search_horse_shortest_way
+# выпрямляет кортеж, убирает из него нулевой ход
+def pars_way(way: tuple) -> tuple:
+    if isinstance(way[0], tuple):
+        return pars_way(way[0])+way[1:]
+    return ()
+
+
+# функция возвращает первый найденный кратчайший путь шахматного коня из точки А в точку В на доске с заданным размером
 def search_horse_shortest_way(x_start: int, y_start: int, x_finish: int, y_finish: int, size: int = 8) -> tuple:
 
     # проверяем, находится ли старт и финиш в пределах доски
@@ -12,28 +21,14 @@ def search_horse_shortest_way(x_start: int, y_start: int, x_finish: int, y_finis
         raise ValueError('start and finish positions must be within the chessboard 8x8')
 
     # проверяем, совпадают ли старт и финиш
-    pos_start = (x_start, y_start)
-    pos_finish = (x_finish, y_finish)
-    if pos_start == pos_finish:
-        return pos_finish
+    if x_start == x_finish and y_start == y_finish:
+        return ()
 
-    # формируем список всех возможных первых ходов коня
-    ways = [(pos_start, (pos_start[0] - 1, pos_start[1] + 2)), (pos_start, (pos_start[0] + 1, pos_start[1] + 2)),
-            (pos_start, (pos_start[0] + 2, pos_start[1] + 1)), (pos_start, (pos_start[0] + 2, pos_start[1] - 1)),
-            (pos_start, (pos_start[0] + 1, pos_start[1] - 2)), (pos_start, (pos_start[0] - 1, pos_start[1] - 2)),
-            (pos_start, (pos_start[0] - 2, pos_start[1] - 1)), (pos_start, (pos_start[0] - 2, pos_start[1] + 1))]
+    # формируем список всех ходов WAYS с нулевым ходом
+    ways = [((x_start, y_start), (x_start, y_start))]
 
-    # проверяем, есть ли среди первых ходов тот, который достигает цели. Отбрасываем ходы за пределами доски.
+    # для каждого хода из списка всех ходов WAYS формируем список следующих новых ходов
     wrong_ways = []
-    for way in ways:
-        if way[-1] == pos_finish:
-            return way
-        if not way[-1][0] in range(1, size+1) or not way[-1][-1] in range(1, size+1):
-            wrong_ways.append(way)
-    ways = list(set(ways) - set(wrong_ways))
-    wrong_ways = []
-
-    # для каждого из первых ходов формируем список следующих новых ходов
     for way in ways:
         new_ways = [(way, (way[-1][0] - 1, way[-1][-1] + 2)), (way, (way[-1][0] + 1, way[-1][-1] + 2)),
                     (way, (way[-1][0] + 2, way[-1][-1] + 1)), (way, (way[-1][0] + 2, way[-1][-1] - 1)),
@@ -49,10 +44,10 @@ def search_horse_shortest_way(x_start: int, y_start: int, x_finish: int, y_finis
 
         # проверяем есть ли среди новых ходов тот, который достигает цели
         for new_way in new_ways:
-            if new_way[-1] == pos_finish:
-                return new_way
+            if new_way[-1] == (x_finish, y_finish):
+                return pars_way(new_way)
 
-            # если цель не достигнута, динамически добавляем новый ход в конец списка всех ходов
+            # если цель не достигнута, динамически добавляем новый ход в конец списка всех ходов WAYS
             ways.append(new_way)
 
 
