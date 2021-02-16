@@ -18,7 +18,7 @@ def search_horse_shortest_way(x_start: int, y_start: int, x_finish: int, y_finis
     # проверяем, находится ли старт и финиш в пределах доски
     if not x_start in range(1, size+1) or not y_start in range(1, size+1) or not x_finish in range(1, size+1)\
             or not y_finish in range(1, size+1):
-        raise ValueError('start and finish positions must be within the chessboard 8x8')
+        raise ValueError(f'start and finish positions must be within the chessboard {size}x{size}')
 
     # проверяем, совпадают ли старт и финиш
     if x_start == x_finish and y_start == y_finish:
