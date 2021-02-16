@@ -47,7 +47,7 @@ def search_horse_shortest_way(x_start: int, y_start: int, x_finish: int, y_finis
             if new_way[-1] == (x_finish, y_finish):
                 return pars_way(new_way)
 
-            # если цель не достигнута, динамически добавляем новый ход в конец списка всех ходов WAYS
+            # если цель не достигнута, добавляем новый ход в конец списка всех ходов WAYS
             ways.append(new_way)
 
 
