@@ -13,7 +13,7 @@ def chek_brackets_balanced(sequence_of_char: str):
         if char in ['(', '{', '[']:
             stack.append(char)  # добавляем в стек открывающие скобки по очереди их появления в выражении
         else:
-            if not stack:  # стек будет пустым, если первый символ в выражении - закрывающая скобка
+            if not stack:
                 return False
             # забираем из стека открывающую скобку добавленную туда последней
             last_opening_bracket = stack.pop()
