@@ -45,6 +45,38 @@ class Stack:
         return self.__repr__()
 
 
+class Queue:
+    def __init__(self):
+        self._items = []
+
+    def is_empty(self):
+        return bool(self._items)
+
+    def enqueue(self, item):
+        self._items.insert(0, item)
+
+    def dequeue(self):
+        return self._items.pop()
+
+    def size(self):
+        return len(self._items)
+
+    def get_from_queue(self, search_item):
+        if search_item in self._items:
+            return search_item
+        else:
+            raise ValueError(f'The search_item "{search_item}" is not found in stack')
+
+    def __repr__(self):
+        representation = "<Queue>\n"
+        for ind, item in enumerate(reversed(self._items), 1):
+            representation += f"{ind}: {str(item)}\n"
+        return representation
+
+    def __str__(self):
+        return self.__repr__()
+
+
 if __name__ == "__main__":
     stack = Stack()
     stack.push('a')
@@ -54,4 +86,12 @@ if __name__ == "__main__":
     print(stack)
     print(stack.get_from_stack('c'))
     print(stack)
+    q = Queue()
+    q.enqueue(4)
+    q.enqueue('dog')
+    q.enqueue(True)
+    print(q.size())
+    print(q)
+    print(q.get_from_queue(4))
+
 
