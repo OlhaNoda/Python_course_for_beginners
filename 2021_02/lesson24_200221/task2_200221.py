@@ -7,37 +7,37 @@ from node import Node
 
 class Stack:
     def __init__(self):
-        self._head = None
+        self.head = None
 
     def is_empty(self):
-        if self._head is None:
+        if self.head is None:
             return True
         return False
 
     def push(self, item):
-        if self._head is None:
-            self._head = Node(item)
+        if self.head is None:
+            self.head = Node(item)
         else:
             temp = Node(item)
-            temp.set_next(self._head)
-            self._head = temp
+            temp.set_next(self.head)
+            self.head = temp
 
     def pop(self):
         if self.is_empty():
             return None
         else:
-            popped_item = self._head
-            self._head = self._head.get_next
+            popped_item = self.head
+            self.head = self.head.get_next
             popped_item.set_next = None
             return popped_item
 
     def peek(self):
         if self.is_empty():
             return None
-        return self._head
+        return self.head
 
     def size(self):
-        current = self._head
+        current = self.head
         count = 0
         while current is not None:
             count += 1
@@ -46,7 +46,7 @@ class Stack:
 
     def __repr__(self):
         representation = "<Stack>\n"
-        current = self._head
+        current = self.head
         while current is not None:
             representation += f"{current.get_data()} "
             current = current.get_next()
