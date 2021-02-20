@@ -2,7 +2,18 @@
 """
 Implement a stack using a singly linked list.
 """
-from node import Node
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+    def __repr__(self):
+        return f'{self.data}'
+
+    def __str__(self):
+        return self.__repr__()
 
 
 class Stack:
@@ -19,7 +30,7 @@ class Stack:
             self.head = Node(item)
         else:
             temp = Node(item)
-            temp.set_next(self.head)
+            temp.next = self.head
             self.head = temp
 
     def pop(self):
@@ -27,8 +38,8 @@ class Stack:
             return None
         else:
             popped_item = self.head
-            self.head = self.head.get_next
-            popped_item.set_next = None
+            self.head = self.head.next
+            popped_item.next = None
             return popped_item
 
     def peek(self):
@@ -41,15 +52,15 @@ class Stack:
         count = 0
         while current is not None:
             count += 1
-            current = current.get_next()
+            current = current.next
         return count
 
     def __repr__(self):
         representation = "<Stack>\n"
         current = self.head
         while current is not None:
-            representation += f"{current.get_data()} "
-            current = current.get_next()
+            representation += f"{current.data} "
+            current = current.next
         return representation + ">"
 
     def __str__(self):
@@ -60,10 +71,14 @@ if __name__ == "__main__":
     s = Stack()
 
     s.push(4)
-    s.push('dog')
+    s.push(72)
     s.push(32)
     s.push(15)
 
     print(s)
     print(s.peek())
     print(s.size())
+    print(s)
+
+    print(s.pop())
+    print(s)
