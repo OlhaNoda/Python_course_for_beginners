@@ -56,12 +56,15 @@ class UnorderedList:
             previous.set_next(current.get_next())
 
     def append(self, item):
-        current = self._head
         temp = Node(item)
         temp.set_next(None)
-        while current.get_next() is not None:
-            current = current.get_next()
-        current.set_next(temp)
+        if self.is_empty():
+            self._head = temp
+        else:
+            current = self._head
+            while current.get_next() is not None:
+                current = current.get_next()
+            current.set_next(temp)
 
     def index(self, item):
         current = self._head
@@ -111,14 +114,15 @@ class UnorderedList:
     def slice(self, start, stop):
         if start > stop:
             raise ValueError
-        else:
-            slice_list = UnorderedList()
-            current = self._head
-            for i in range(start):
-                current = current.get_next()
-            for i in range(start, stop):
-                slice_list.add(current)
-                current = current.get_next()
+        if stop > self.size():
+            stop = self.size()
+        slice_list = UnorderedList()
+        current = self._head
+        for i in range(start):
+            current = current.get_next()
+        for i in range(start, stop):
+            slice_list.append(current)
+            current = current.get_next()
         return slice_list
 
     def __repr__(self):
@@ -160,4 +164,4 @@ if __name__ == "__main__":
     my_list.insert(5, 15)
     print(my_list)
 
-    print(my_list.slice(1, 3))
+    print(my_list.slice(2, 4))
