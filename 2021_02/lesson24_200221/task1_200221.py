@@ -78,6 +78,8 @@ class UnorderedList:
         return index
 
     def pop(self, index=None):
+        if self.is_empty():
+            return None
         if index is None:
             index = self.size()-1
         current = self._head
@@ -85,11 +87,12 @@ class UnorderedList:
         for i in range(index):
             previous = current
             current = current.get_next()
+        popped_item = current
         if previous is None:
             self._head = current.get_next()
         else:
             previous.set_next(current.get_next())
-        return current
+        return popped_item
 
     def insert(self, index, item):
         temp = Node(item)
