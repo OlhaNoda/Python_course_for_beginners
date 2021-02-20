@@ -9,6 +9,12 @@ class Node:
         self.data = data
         self.next = None
 
+    def __repr__(self):
+        return f'{self.data}'
+
+    def __str__(self):
+        return self.__repr__()
+
 
 class Queue:
     def __init__(self):
