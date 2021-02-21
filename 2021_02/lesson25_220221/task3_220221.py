@@ -62,6 +62,14 @@ class HashTable:
     def __setitem__(self, key, data):
         self.put(key, data)
 
+    """
+    def __len__(self):
+        return self.size
+    """
+
+    def __len__(self):
+        return len([slot for slot in self.slots if slot])
+
 
 if __name__ == "__main__":
     H = HashTable()
@@ -83,3 +91,4 @@ if __name__ == "__main__":
     H[20] = "duck"
     print(H[20])
     print(H[99])
+    print(len(H))
