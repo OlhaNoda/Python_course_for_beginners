@@ -2,20 +2,17 @@
 """
 Implement binary search using recursion.
 """
-from typing import Union
 
 
-# функция осуществтяет бинарный поиск в упорядоченном массиве и возвращает индекс искомого значения
-# f((2,5,7,9,11),9) -> 3
-def binary_search_recursive(array: Union[list, tuple], value: Union[int, float]) -> int:
-    left = 0
-    right = len(array) - 1
-    middle = (left + right) // 2
-    if value == array[middle]:
-        return middle
-    if value > array[middle]:
-        return binary_search_recursive(array[middle+1:], value) + (middle+1)
-    return binary_search_recursive(array[:middle], value)
+def binary_search_recursive(array, item):
+    first = 0
+    last = len(array) - 1
+    midpoint = (first + last) // 2
+    if item == array[midpoint]:
+        return midpoint
+    if item > array[midpoint]:
+        return binary_search_recursive(array[midpoint+1:], item) + (midpoint + 1)
+    return binary_search_recursive(array[:midpoint], item)
 
 
 if __name__ == "__main__":
