@@ -70,6 +70,11 @@ class HashTable:
     def __len__(self):
         return len([slot for slot in self.slots if slot])
 
+    def __contains__(self, key):
+        if key in self.slots:
+            return True
+        return False
+
 
 if __name__ == "__main__":
     H = HashTable()
@@ -92,3 +97,5 @@ if __name__ == "__main__":
     print(H[20])
     print(H[99])
     print(len(H))
+    print(77 in H)
+    print(77 not in H)
