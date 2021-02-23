@@ -37,3 +37,4 @@ if __name__ == "__main__":
     assert fibonacci_search(my_array, 0) == 0
     assert fibonacci_search(my_array, 99) == 99
     assert fibonacci_search(my_array, 78) == 78
+    print(fibonacci_search(my_array, 200))
