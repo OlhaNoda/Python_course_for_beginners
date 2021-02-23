@@ -9,8 +9,10 @@ def merge_sort(array):
         mid = len(array) // 2
         left_half = []
         right_half = []
+        # left_half = array[:mid]
         for index in range(mid):
             left_half.append(array[index])
+        # right_half = array[mid:]
         for index in range(mid, len(array)):
             right_half.append(array[index])
 
