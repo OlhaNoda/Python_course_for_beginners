@@ -59,20 +59,31 @@ def partition(array, first, last):
     temp = array[first]
     array[first] = array[right_mark]
     array[right_mark] = temp
+    print(right_mark)
 
     return right_mark
 
 
+# реализация быстрой сортировки с использованием сортировки вставкой для частей массива
+# используя рекурсию постоянно находим размер массива
+# если размер больше порогового значения 10, для этой части массива вызывается функция быстрой сортировки
+# в противном случае вызывается сортировка вставкой
 def hybrid_quick_sort_helper(array, first, last):
+    # если размер массива меньше, чем установленный порог 10 применяем сортировку вставкой
     while first < last:
         if last - first + 1 < 10:
             insertion_sort_helper(array, first, last)
             break
+        # если размер массива больше, чем установленный порог 10 применяем быструю сортировку
         else:
             pivot = partition(array, first, last)
+            # если левая сторона относительно точки поворота меньше, чем правая, делаем ее гибридную сортировку
+            # перемещаемся в правую часть массива
             if pivot - first < last - pivot:
                 hybrid_quick_sort_helper(array, first, pivot - 1)
                 first = pivot + 1
+            # если правая сторона относительно точки поворота меньше, чем левая, делаем ее гибридную сортировку
+            # перемещаемся в левую часть массива
             else:
                 hybrid_quick_sort_helper(array, pivot + 1, last)
                 last = pivot - 1
