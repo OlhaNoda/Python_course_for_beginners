@@ -44,6 +44,8 @@ if __name__ == "__main__":
     pq.enqueue(x6)
     pq.enqueue(x7)
     print(pq)
+    pq.dequeue()
+    print(pq)
 
 
 
