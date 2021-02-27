@@ -12,6 +12,9 @@ class Node:
         self.data = data
         self.priority = priority
 
+    def __repr__(self):
+        return f'{self.data} - {self.priority}'
+
 
 class PriorityQueue:
     def __init__(self):
