@@ -6,6 +6,7 @@ For the current task, you can choose any weather API or website or use https://o
 """
 
 import requests
+import datetime
 
 
 def set_url(city_name, key):
@@ -18,10 +19,17 @@ def get_weather_data(url):
     return response.json()
 
 
+def transform_unix_time(unix_time):
+    value = datetime.datetime.fromtimestamp(unix_time)
+    return value.strftime('%Y-%m-%d %H:%M:%S')
+
+
 def print_weather(data, city_name):
     print("{}'s temperature: {}°C ".format(city_name, round(data['main']['temp']-273.15)))
     print("Wind speed: {} m/s".format(data['wind']['speed']))
     print("Weather: {}".format(data['weather'][0]['description']))
+    print("Sunrise: {}".format(transform_unix_time(data['sys']['sunrise'])))
+    print("Sunset: {}".format(transform_unix_time(data['sys']['sunset'])))
 
 
 if __name__ == '__main__':
