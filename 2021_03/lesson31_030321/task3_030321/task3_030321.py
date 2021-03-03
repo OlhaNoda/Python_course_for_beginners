@@ -19,13 +19,12 @@ def get_weather_data(url):
 
 
 def print_weather(data, city_name):
-    print("{}'s temperature: {}°C ".format(city_name, data['main']['temp']))
+    print("{}'s temperature: {}°C ".format(city_name, round(data['main']['temp']-273.15)))
     print("Wind speed: {} m/s".format(data['wind']['speed']))
-    print("Description: {}".format(data['weather'][0]['description']))
-    print("Weather: {}".format(data['weather'][0]['main']))
+    print("Weather: {}".format(data['weather'][0]['description']))
 
 
 if __name__ == '__main__':
-    api_key = 'd71fe15a0a40cbd435427e14549a55ca'
+    api_key = '14ecba0ff417be47073468f7e5b4c133'
     city = input('Enter the city:')
     print_weather(get_weather_data(set_url(city, api_key)), city)
