@@ -16,8 +16,8 @@ def transform_unix_time(unix_time):
 
 
 def get_comments(url, author):
-    response = requests.get(url, {"author": author})
-    data = response.json()
+    ret = requests.get(url, {"author": author})
+    data = ret.json()
     comments = []
     for entry in data['data']:
         comment = {'time': transform_unix_time(entry['created_utc']), 'text': entry['body']}
