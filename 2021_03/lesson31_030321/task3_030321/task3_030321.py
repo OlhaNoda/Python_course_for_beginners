@@ -28,9 +28,4 @@ def print_weather(data, city_name):
 if __name__ == '__main__':
     api_key = 'd71fe15a0a40cbd435427e14549a55ca'
     city = input('Enter the city:')
-    print()
-    print(set_url(city, api_key))
-
-    weather_data = get_weather_data(set_url(city, api_key))
-  #  print_weather(weather_data, city)
-    print(weather_data)
+    print_weather(get_weather_data(set_url(city, api_key)), city)
