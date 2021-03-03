@@ -15,8 +15,8 @@ def set_url(city_name, key):
 
 
 def get_weather_data(url):
-    response = requests.get(url)
-    return response.json()
+    ret = requests.get(url)
+    return ret.json()
 
 
 def transform_unix_time(unix_time):
