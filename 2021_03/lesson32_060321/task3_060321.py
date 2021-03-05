@@ -46,16 +46,26 @@ def write_data_to_file(data):
         json.dump(data, f)
 
 
-def main(url, author):
+def load_data(url, author):
+    print("start thread func")
     data = get_content(url, author)
     my_comments = get_comments(data)
     sorted_comments = sort_comments_by_time(my_comments)
     write_data_to_file(sorted_comments)
-    for comment in sorted_comments:
-        print(comment)
+    print("end thread func")
+
+
+def thread_load_data(url, author):
+    t = threading.Thread(target=load_data, args=(url, author))
+    t.start()
+    print("Thread is started")
+    return t
 
 
 if __name__ == '__main__':
     my_url = "https://api.pushshift.io/reddit/comment/search/"
     my_author = "YogaG5"
-    main(my_url, my_author)
+    t = thread_load_data(my_url, my_author)
+    print("Before join")
+    t.join()
+    print("Thread is complete")
