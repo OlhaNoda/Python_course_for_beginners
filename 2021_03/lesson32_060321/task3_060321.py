@@ -8,6 +8,7 @@ For this task use Threads for making requests to reddit API.
 import requests
 import json
 import datetime
+import threading
 
 
 def transform_unix_time(unix_time):
@@ -45,11 +46,16 @@ def write_data_to_file(data):
         json.dump(data, f)
 
 
-if __name__ == '__main__':
-    my_url = "https://api.pushshift.io/reddit/comment/search/"
-    my_author = "YogaG5"
-    my_comments = get_comments(get_content(my_url, my_author))
+def main(url, author):
+    data = get_content(url, author)
+    my_comments = get_comments(data)
     sorted_comments = sort_comments_by_time(my_comments)
     write_data_to_file(sorted_comments)
     for comment in sorted_comments:
         print(comment)
+
+
+if __name__ == '__main__':
+    my_url = "https://api.pushshift.io/reddit/comment/search/"
+    my_author = "YogaG5"
+    main(my_url, my_author)
