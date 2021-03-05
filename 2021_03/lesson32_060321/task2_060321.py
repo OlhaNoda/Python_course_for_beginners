@@ -47,12 +47,12 @@ def run_server(host, port):
     client_id = 0
     while True:
         client_sock = accept_client_conn(serv_sock, client_id)
-        t = threading.Thread(target=serve_client, args=(client_sock, client_id))
+        t = threading.Thread(target=server_client, args=(client_sock, client_id))
         t.start()
         client_id += 1
 
 
-def serve_client(client_sock, client_id):
+def server_client(client_sock, client_id):
     request = read_request(client_sock)
     response = handle_request(request)
     send_response(client_sock, response, client_id)
