@@ -36,10 +36,10 @@ def handle_request(data):
     return data.upper()
 
 
-def send_response(client_sock, response, cid):
+def send_response(client_sock, response, client_id):
     client_sock.sendall(response)
     client_sock.close()
-    print(f'Client #{cid} has been served')
+    print(f'Client #{client_id} has been served')
 
 
 def run_server(host, port):
