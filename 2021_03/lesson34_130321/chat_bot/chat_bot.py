@@ -15,6 +15,7 @@ class ChatBotApp(QtWidgets.QMainWindow, ui_chat_bot.Ui_MainWindow):
         self.lineEdit.clear()
 
 
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     window = ChatBotApp()
