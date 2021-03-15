@@ -19,11 +19,9 @@ async def load(url, subreddit):
 
 
 def get_content(url, subreddits):
-    content = []
     loop = asyncio.get_event_loop()
-    for subreddit in subreddits:
-        data = loop.run_until_complete(load(url, subreddit))
-        content.append(data)
+    data = asyncio.gather(*[load(url, subreddit) for subreddit in subreddits])
+    content = loop.run_until_complete(data)
     loop.close()
     return content
 
