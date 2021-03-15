@@ -8,21 +8,23 @@ For this task use asyncio and aiohttp libraries for making requests to Reddit AP
 import json
 import aiohttp
 import asyncio
+import time
 
 
 async def load(url, subreddit):
-    session = aiohttp.ClientSession()
-    resp = await session.get(url, params={"subreddit": subreddit})
-    data = await resp.json()
-    await session.close()
-    return data
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, params={"subreddit": subreddit}) as resp:
+            data = await resp.json()
+            return data
 
 
 def get_content(url, subreddits):
+    start = time.time()
     loop = asyncio.get_event_loop()
     data = asyncio.gather(*[load(url, subreddit) for subreddit in subreddits])
     content = loop.run_until_complete(data)
     loop.close()
+    print('Start asyncio_get_content: {} Time taken: {}'.format(start, time.time() - start))
     return content
 
 
@@ -32,6 +34,7 @@ def write_data_to_file(data):
 
 
 def main(url, subreddits):
+
     data = get_content(url, subreddits)
     write_data_to_file(data)
 
