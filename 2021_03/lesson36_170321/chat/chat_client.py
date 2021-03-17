@@ -38,7 +38,7 @@ class Client:
         self.connect_ui = ui_chat_connect.Ui_Form()
         self.connect_ui.setupUi(self.connectWidget)
         self.connect_ui.pushButton.clicked.connect(self.button_connect_clicked)
-        self.mainWindow.setGeometry(QtCore.QRect(1080, 20, 350, 500))
+        self.mainWindow.setGeometry(QtCore.QRect(1100, 20, 320, 500))
         self.mainWindow.show()
 
     def button_connect_clicked(self):
