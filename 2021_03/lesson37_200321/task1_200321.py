@@ -11,8 +11,8 @@ import sqlite3
 conn = sqlite3.connect('example.db')
 cur = conn.cursor()
 
-# создание таблицы users
-cur.execute("""CREATE TABLE IF NOT EXISTS users(
+# создание таблицы
+cur.execute("""CREATE TABLE IF NOT EXISTS my_users(
    userid INT PRIMARY KEY,
    fname TEXT,
    lname TEXT,
@@ -20,16 +20,18 @@ cur.execute("""CREATE TABLE IF NOT EXISTS users(
 """)
 conn.commit()
 
+# переименование таблицы
+cur.execute("ALTER TABLE my_users RENAME TO users")
+conn.commit()
+
 # добавление нового поля
 cur.execute("ALTER TABLE users ADD COLUMN 'age' 'INT'")
 conn.commit()
-
 
 # добавление записи в таблицу users
 cur.execute("""INSERT INTO users(userid, fname, lname, gender, age) 
    VALUES('00003', 'Tom', 'Jackson', 'male', '25');""")
 conn.commit()
-
 
 # корректировка записи
 cur.execute("""UPDATE users SET age = '30' WHERE userid = '00001'""")
@@ -39,6 +41,6 @@ conn.commit()
 cur.execute("""DELETE FROM users WHERE lname = 'Jhonson'""")
 conn.commit()
 
-# вывод таблицы users
+# вывод таблицы
 for value in cur.execute("SELECT * FROM users"):
     print(value)
