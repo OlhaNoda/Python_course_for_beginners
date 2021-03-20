@@ -11,24 +11,23 @@ As a solution to HW, create a file named: task2.sql with all SQL queries:
 import sqlite3
 
 
-def get_select(db_name, selects, select_number):
-    con = sqlite3.connect(db_name)
-    with con:
-        cur = con.cursor()
-        cur.execute(selects[select_number])
-        records = cur.fetchall()
+def get_select(connection, selects, select_number):
+    with connection:
+        cursor = connection.cursor()
+        cursor.execute(selects[select_number])
+        records = cursor.fetchall()
     return records
 
 
 if __name__ == '__main__':
-    my_db_name = 'hr.db'
+    my_connection = sqlite3.connect('hr.db')
     my_selects = {
         '1': 'SELECT first_name AS "First Name", last_name AS "Last Name" FROM employees',
         '2': 'SELECT DISTINCT department_id FROM employees',
         '3': 'SELECT * FROM employees ORDER BY first_name DESC',
         '4': 'SELECT first_name, last_name, salary, salary*0.12 AS PF FROM employees',
         '5': 'SELECT MAX(salary), MIN (salary) FROM employees',
-        '6': 'SELECT employee_id, first_name, last_name, ROUND(salary*(1-commission_pct), 2) FROM employees'
+        '6': 'SELECT employee_id, first_name, last_name, ROUND((salary*(1-commission_pct)/12), 2) FROM employees'
     }
-    for i in get_select(my_db_name, my_selects, '6'):
+    for i in get_select(my_connection, my_selects, '6'):
         print(i)
