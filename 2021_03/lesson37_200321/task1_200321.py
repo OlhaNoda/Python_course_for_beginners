@@ -30,15 +30,17 @@ conn.commit()
 
 # добавление записи в таблицу users
 cur.execute("""INSERT INTO users(userid, fname, lname, gender, age) 
-   VALUES('00003', 'Tom', 'Jackson', 'male', '25');""")
+   VALUES('00004', 'Anna', 'Li', 'male', '45');""")
+cur.execute("""INSERT INTO users(userid, fname, lname, gender, age) 
+   VALUES('00005', 'Mariya', 'Smith', 'male', '20')""")
 conn.commit()
 
 # корректировка записи
-cur.execute("""UPDATE users SET age = '30' WHERE userid = '00001'""")
+cur.execute("""UPDATE users SET age = '30' WHERE userid = '00003'""")
 conn.commit()
 
 # удаление записи
-cur.execute("""DELETE FROM users WHERE lname = 'Jhonson'""")
+cur.execute("""DELETE FROM users WHERE lname = 'Li'""")
 conn.commit()
 
 # вывод таблицы
